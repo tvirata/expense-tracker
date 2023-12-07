@@ -1,12 +1,6 @@
 import pb from "lib/pocketbase";
 import React from "react";
 import { useState } from "react";
-import Navigation from "./Navigation";
-import History from "./pages/History";
-import Goals from "./pages/Goals";
-import Login from "./pages/Login";
-import About from "./pages/About";
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
 export default function Home() {
@@ -24,29 +18,6 @@ export default function Home() {
 
   return (
     <>
-      <Navigation />
-      <Routes className="menu">
-        <Route className="menu-item" path="/" element={<Home />} />
-        <Route className="menu-item" path="/history" element={<History />} />
-        <Route className="menu-item" path="/goals" element={<Goals />} />
-        <Route className="menu-item" path="/about" element={<About />} />
-        <Route
-          className="menu-item"
-          path={isLoggedIn ? "/login" : "/home"}
-          element={isLoggedIn ? <Login /> : logout()}
-        />
-      </Routes>
-      {/* <ul className="menu">
-        <Item value="Home" link="./Home" />
-        <Item value="My History" link="./pages/History" />
-        <Item value="Goals" link="./pages/Goals" />
-        <Item value="About Us" link="./pages/About" />
-        <li className="blank"></li>
-        <Item
-          value={isLoggedIn ? "Log In" : "Log Out"}
-          link={isLoggedIn ? "./pages/Login" : logout()}
-        />
-      </ul> */}
       <h1>Expense Tracker</h1>
       <h2>Log Your Purchases</h2>
       <p>
