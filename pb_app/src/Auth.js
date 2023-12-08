@@ -8,8 +8,8 @@ export default function Auth() {
   const [dummy, reload] = useState(false);
   const [records, setRecords] = useState([]);
   const [total, setTotal] = useState(0);
-  const [collec, setCollec] = useState('');  // Initialize with an empty string
-  // const [colname, setColname] = useState('');
+  const [collec, setCollec] = useState('');  
+
   const adminuser = 'admin@gmail.com';
   const adminpass = 'adminadmin';
 
@@ -19,13 +19,11 @@ export default function Auth() {
   }, [total]);
 
   useEffect(() =>{
-    // setCollec(colname);
-    // setCollec('basic_item');
     setCollec(JSON.parse(localStorage.getItem("currentuser")));
   }, [view]);
 
   async function view() {  // read
-    // setCollec('basic_item');
+
     setLoading(true);
     try {
       const itemRecords = await pb.collection(collec).getFullList({
@@ -50,7 +48,6 @@ export default function Auth() {
       console.log(findr.id);
       console.log(dname);
       await pb.collection(collec).delete(findr.id);
-      // alert("ITEM DELETED");
     } catch (e) {
       console.log("ERROR FETCHING RECORDS: ", e);
       alert(e);
@@ -63,8 +60,6 @@ export default function Auth() {
     setLoading(true);
     try {
       const authData = await pb.collection('users').authWithPassword(data.user, data.pass);
-      // Set the collection after successful login
-      // setColname(data.user);
       const getusername = data.user.substring(0, data.user.lastIndexOf("@"));
       localStorage.setItem("currentuser", JSON.stringify(getusername));
     } catch (e) {
@@ -75,25 +70,6 @@ export default function Auth() {
     reset();
     reload(!dummy);
   }
-
-  // async function regnew(data) {
-  //   setLoading(true);
-  //   const newuser = {
-  //     "email": data.r_user,
-  //     "emailVisibility": true,
-  //     "password": data.r_pass,
-  //     "passwordConfirm": data.r_pass
-  //   };
-  //   try {
-  //     const anotheruser = await pb.collection('users').create(newuser);
-  //   } catch (e) {
-  //     alert(e);
-  //   }
-  //   alert("NEW ACCOUNT CREATED!")
-  //   setLoading(false);
-  //   reset();
-  //   reload(!dummy);
-  // }
 
   async function regnew(data) {
     setLoading(true);
@@ -179,19 +155,6 @@ export default function Auth() {
             <button type="submit" disabled={isLoading}>Add</button>
           </form>
         </div>
-        {/* <hr style={{ borderTop: '3px solid #bbb' }}></hr>
-        <div>
-          {isLoading && <p>Loading...</p>}
-          <h1>
-            Register New Account
-          </h1>
-          <form onSubmit={handleSubmit(regnew)}>
-            <input type="text" placeholder="username" {...register("r_user")} /><br />
-            <input style={{ marginTop: 10 }} type="password" placeholder="password" {...register("r_pass")} />
-            <br />
-            <button style={{ marginTop: 10 }} type="submit" disabled={isLoading}>Register</button>
-          </form>
-        </div> */}
         <hr style={{ borderTop: '3px solid #bbb' }}></hr>
         <div>
           <h2>Expenses:</h2>
@@ -199,7 +162,6 @@ export default function Auth() {
             <button type="submit" disabled={isLoading}>Load</button>
           </form>
           <div>
-            {/* Display the loaded items here */}
             <h3>TOTAL: ${total}</h3>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
               {records.map((item, index) => (
