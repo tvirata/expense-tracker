@@ -1,6 +1,6 @@
 # expense-tracker
 Group Members:\
-  Angel Penaloza \ 
-  John Park \
-  Kingston Leung \
-  Tonirose Virata \
+  Angel Penaloza\ 
+  John Park\
+  Kingston Leung\
+  Tonirose Virata\
