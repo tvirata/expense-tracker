@@ -1,53 +1,128 @@
 body {
-    background-color: rgb(30, 30, 30);
-    color: rgb(230, 230, 230);
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    margin: 0;
-  }
+  background-color: rgb(30, 30, 30);
+  color: rgb(230, 230, 230);
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  margin: 50px;
+}
+
+.menu {
+  width: 100%;
+  display: inline-flex;
+  margin: 0px;
+  padding: 0px;
+  border-bottom: solid;
+  background-color: black;
+}
+
+.menu-item, .blank {
+  list-style-type: none;
+  padding: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  flex-grow: 1;
+  font-size: 13px;
+  color: rgb(200, 200, 200);
+  text-decoration: none;
+
+}
+
+a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+.blank {
+  flex-grow: 2;
+}
+
+h2 {
+  display: inline;
+  margin:  5% 25%;
+  color: rgb(200, 200, 200);
+}
+
+p {
+  background-color: rgb(20, 20, 20);
+  margin: 5% 25%;
+  line-height: 35px;
+  padding: 30px;
+  border-radius: 15px;
+  border: solid;
+}
+
+footer {
+  margin: 7% 20%;
+}
+
+.add-new {
+  display: inline;
+  margin: 1% 5%;
   
-  h1 {
-    text-align: center;
-    margin: 50px;
-  }
-  
-  .menu {
-    width: 100%;
-    display: inline-flex;
-    margin: 0px;
-    padding: 0px;
-    border-bottom: solid;
-    background-color: black;
-  }
-  
-  .menu-item, .blank {
-    list-style-type: none;
-    padding: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
-    flex-grow: 1;
-    font-size: 13px;
-  }
-  
-  .blank {
-    flex-grow: 2;
-  }
-  
-  h2 {
-    margin:  5% 20%;
-    color: rgb(200, 200, 200);
-  }
-  
-  p {
-    background-color: rgb(20, 20, 20);
-    margin: 0% 20%;
-    line-height: 35px;
-    padding: 30px;
-    border-radius: 15px;
-    border: solid;
-  }
-  
-  footer {
-    margin: 7% 20%;
-  }
-  
+}
+
+.login {
+  margin: auto;
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 5%;
+  height: 20px;
+  width: 95%;
+  border-radius: 30px;
+  padding: 5px 15px;
+}
+
+button {
+  height: 30px;
+  width: 70px;
+  border-radius: 14px;
+  border: none;
+  padding: 1px 5px;
+}
+ 
+a {
+  text-decoration: none;
+  color: rgb(230, 230, 230);
+}
+
+a:hover  {
+  text-shadow: 1px 1px 1px white;
+}
+
+.add {
+  width: 100%;
+  height: 40px;
+  display: block;
+}
+
+.purchase-history {
+  height: 100%;
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+.input-section {
+  display: flex;
+  padding: 30px;
+  padding-right: 50px;
+  flex-direction: column;
+  margin: 40px auto;
+  border: solid;
+  height: 100%;
+  width: 70%;
+  border-radius: 15px;
+}
