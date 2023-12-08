@@ -9,13 +9,23 @@ export default function Auth() {
   const [records, setRecords] = useState([]);
   const [total, setTotal] = useState(0);
   const [collec, setCollec] = useState('');  // Initialize with an empty string
+  // const [colname, setColname] = useState('');
+  const adminuser = 'admin@gmail.com';
+  const adminpass = 'adminadmin';
 
   useEffect(() => {
     // Convert total to a number and fix the decimal places
     setTotal(parseFloat(total).toFixed(2));
   }, [total]);
 
+  useEffect(() =>{
+    // setCollec(colname);
+    // setCollec('basic_item');
+    setCollec(JSON.parse(localStorage.getItem("currentuser")));
+  }, [view]);
+
   async function view() {  // read
+    // setCollec('basic_item');
     setLoading(true);
     try {
       const itemRecords = await pb.collection(collec).getFullList({
@@ -33,13 +43,30 @@ export default function Auth() {
     }
     setLoading(false);
   }
+  async function del(dname) {  // delete
+    setLoading(true);
+    try {
+      const findr = await pb.collection(collec).getFirstListItem(`name="${dname}"`);
+      console.log(findr.id);
+      console.log(dname);
+      await pb.collection(collec).delete(findr.id);
+      // alert("ITEM DELETED");
+    } catch (e) {
+      console.log("ERROR FETCHING RECORDS: ", e);
+      alert(e);
+    }
+    view();
+    setLoading(false);
+  }
 
   async function login(data) {
     setLoading(true);
     try {
       const authData = await pb.collection('users').authWithPassword(data.user, data.pass);
       // Set the collection after successful login
-      setCollec('basic_item');
+      // setColname(data.user);
+      const getusername = data.user.substring(0, data.user.lastIndexOf("@"));
+      localStorage.setItem("currentuser", JSON.stringify(getusername));
     } catch (e) {
       alert(e);
     }
@@ -48,6 +75,25 @@ export default function Auth() {
     reset();
     reload(!dummy);
   }
+
+  // async function regnew(data) {
+  //   setLoading(true);
+  //   const newuser = {
+  //     "email": data.r_user,
+  //     "emailVisibility": true,
+  //     "password": data.r_pass,
+  //     "passwordConfirm": data.r_pass
+  //   };
+  //   try {
+  //     const anotheruser = await pb.collection('users').create(newuser);
+  //   } catch (e) {
+  //     alert(e);
+  //   }
+  //   alert("NEW ACCOUNT CREATED!")
+  //   setLoading(false);
+  //   reset();
+  //   reload(!dummy);
+  // }
 
   async function regnew(data) {
     setLoading(true);
@@ -59,9 +105,34 @@ export default function Auth() {
     };
     try {
       const anotheruser = await pb.collection('users').create(newuser);
+      const authData = await pb.admins.authWithPassword(adminuser, adminpass);
+      const getusername = anotheruser.email.substring(0, anotheruser.email.lastIndexOf("@"));
+      localStorage.setItem("currentuser", JSON.stringify(getusername));
+      const base = await pb.collections.create({
+        name: getusername,
+        type: 'base',
+        listRule: '',
+        viewRule: '',
+        createRule: '',
+        updateRule: '',
+        deleteRule: '',
+        schema: [
+          {
+            name: 'name',
+            type: 'text',
+            required: true,
+          },
+          {
+            name: 'cost',
+            type: 'number',
+            required: true,
+          },
+        ],
+      });
     } catch (e) {
       alert(e);
     }
+    const authData = await pb.collection('users').authWithPassword(newuser.email, newuser.passwordConfirm);
     alert("NEW ACCOUNT CREATED!")
     setLoading(false);
     reset();
@@ -78,6 +149,7 @@ export default function Auth() {
     } catch (e) {
       alert(e);
     }
+    view();
     setLoading(false);
     reset();
     reload(!dummy);
@@ -86,6 +158,8 @@ export default function Auth() {
   function logout() {
     pb.authStore.clear();
     setCollec('');  // Reset the collection on logout
+    localStorage.removeItem("currentuser");
+    window.location.reload();
     reload(!dummy);
   }
 
@@ -135,6 +209,11 @@ export default function Auth() {
                   </div>
                   <div>
                     <strong>Cost:</strong> ${item.cost}
+                  </div>
+                  <div>
+                  <form onSubmit={(e) => handleSubmit(() => del(item.name))(e)}>
+                   <button type="submit"  disabled={isLoading}>Delete</button>
+                  </form>
                   </div>
                 </li>
               ))}
