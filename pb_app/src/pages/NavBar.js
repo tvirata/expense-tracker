@@ -19,43 +19,28 @@ export default function NavBar() {
   }
   if (pb.authStore.isValid) {
     return (
-      <ul className="menu">
-        <Link className="menu-item" to="">
-          Home
-        </Link>
-        <Link className="menu-item" to="history">
-          History
-        </Link>
-        <Link className="menu-item" to="about">
-          About Us
-        </Link>
-        <li className="blank"></li>
-        <Link className="menu-item" to="">
-          <button onClick={logout}>Logout</button>
-        </Link>
-      </ul>
+      <header className="header">
+      <div class="topnav">
+        <a href="/"> Home </a>
+        <a href="history"> Expense Tracker </a>
+        <a href="about"> About Us </a>
+        <a style={{marginLeft:'65%'}} className="logoutbutt" href="/" onClick={logout}> Logout <i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+      </header>
     );
   } else {
     return (
-      <ul className="menu">
-        <Link className="menu-item" to="">
-          Home
-        </Link>
-        <Link className="menu-item" to="history">
-          History
-        </Link>
-        <Link className="menu-item" to="about">
-          About Us
-        </Link>
-        <li className="blank"></li>
-        <Link className="menu-item" to="login">
-          Log In
-        </Link>
-        <li className="blank"></li>
-        <Link className="menu-item" to="signup">
-          Sign Up
-        </Link>
-      </ul>
+      
+      <header className="header">
+      <div class="topnav">
+        <a href="/"> Home </a>
+        <a href="history"> Expense Tracker </a>
+        <a href="about"> About Us </a>
+        <a style={{marginLeft:'60%'}} href="login"> Log In </a>
+        <a style={{marginLeft:'0'}} className="regbutt" href="signup"> Sign Up </a>
+        </div>
+      </header>
+
     );
   }
 }

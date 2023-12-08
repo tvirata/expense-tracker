@@ -13,53 +13,62 @@ export default function SignUp() {
   const adminuser = "admin@gmail.com";
   const adminpass = "adminadmin";
 
+  function logout() {
+    pb.authStore.clear();
+    setCollec(""); // Reset the collection on logout
+    localStorage.removeItem("currentuser");
+    window.location.reload();
+    reload(!dummy);
+  }
+
   async function regnew(data) {
     setLoading(true);
     const newuser = {
-      email: data.r_user,
-      emailVisibility: true,
-      password: data.r_pass,
-      passwordConfirm: data.r_pass,
+      "email": data.r_user,
+      "emailVisibility": true,
+      "password": data.r_pass,
+      "passwordConfirm": data.r_passConfirm
     };
     try {
-      const anotheruser = await pb.collection("users").create(newuser);
+      const anotheruser = await pb.collection('users').create(newuser);
+      alert("NEW ACCOUNT CREATED!");
+    
       const authData = await pb.admins.authWithPassword(adminuser, adminpass);
-      const getusername = anotheruser.email.substring(
-        0,
-        anotheruser.email.lastIndexOf("@")
-      );
+      const getusername = anotheruser.id;
       localStorage.setItem("currentuser", JSON.stringify(getusername));
+      
       const base = await pb.collections.create({
         name: getusername,
-        type: "base",
-        listRule: "",
-        viewRule: "",
-        createRule: "",
-        updateRule: "",
-        deleteRule: "",
+        type: 'base',
+        listRule: '',
+        viewRule: '',
+        createRule: '',
+        updateRule: '',
+        deleteRule: '',
         schema: [
           {
-            name: "name",
-            type: "text",
+            name: 'name',
+            type: 'text',
             required: true,
           },
           {
-            name: "cost",
-            type: "number",
+            name: 'cost',
+            type: 'number',
             required: true,
           },
         ],
       });
+    
     } catch (e) {
-      alert(e);
+      const alrt = 'ERROR: An account with that email already exists!';
+      alert(alrt+"\n\n"+ e);    //i think that is what will happen in most cases
+      //alert(e);
+    } finally {
+      logout();
+      setLoading(false);
+      window.location.href="login";
     }
-    const authData = await pb
-      .collection("users")
-      .authWithPassword(newuser.email, newuser.passwordConfirm);
-    alert("NEW ACCOUNT CREATED!");
-    setLoading(false);
-    reset();
-    reload(!dummy);
+    
   }
   return (
     <>
@@ -73,9 +82,16 @@ export default function SignUp() {
             placeholder="password"
             {...register("r_pass")}
           />
-          <button type="submit" disabled={isLoading}>
+          <input
+            type="password"
+            placeholder="Confirm password"
+            {...register("r_passConfirm")}
+          />
+          <div className="centerButton">
+            <button type="submit" disabled={isLoading}>
             Register
           </button>
+          </div>
         </form>
       </div>
     </>

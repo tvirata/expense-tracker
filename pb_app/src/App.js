@@ -34,7 +34,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/History" element={<History />} />
           <Route path="/About" element={<About />} />
-          {/* <Route path="/" element={<LogOut />} /> */}
         </Routes>
       </Router>
     );

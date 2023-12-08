@@ -13,17 +13,16 @@ export default function LogIn() {
   async function login(data) {
     setLoading(true);
     try {
-      const authData = await pb
-        .collection("users")
-        .authWithPassword(data.user, data.pass);
-      const getusername = data.user.substring(0, data.user.lastIndexOf("@"));
+      const authData = await pb.collection('users').authWithPassword(data.user, data.pass);
+      console.log(authData.record.id);
+      const getusername = authData.record.id;
       localStorage.setItem("currentuser", JSON.stringify(getusername));
     } catch (e) {
       alert(e);
     }
-
     setLoading(false);
     reset();
+    window.location.href="history";
     reload(!dummy);
   }
   return (
@@ -34,9 +33,9 @@ export default function LogIn() {
         <form onSubmit={handleSubmit(login)}>
           <input type="text" placeholder="email" {...register("user")} />
           <input type="password" placeholder="password" {...register("pass")} />
-          <button type="submit" disabled={isLoading}>
-            Log In
-          </button>
+          <div className="centerButton">
+            <button type="submit" disabled={isLoading}>Log In</button>
+          </div>
         </form>
       </div>
     </>
