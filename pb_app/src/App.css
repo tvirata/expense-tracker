@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
-*{
+* {
   font-family: "Poppins", sans-serif;
 }
 body {
@@ -16,6 +16,7 @@ body {
   display: flex;
   overflow: hidden;
   background-color: #333;
+  padding-right: 10rem;
 }
 
 .topnav a {
@@ -28,7 +29,6 @@ body {
   text-decoration: none;
   font-size: 17px;
   border-radius: 15px;
-  
 }
 
 .topnav a:hover {
@@ -56,23 +56,23 @@ body {
   color: #f2f2f2;
   transition: 0.5s;
 }
-.nextTo{
+.nextTo {
   display: inline;
 }
-.rick{
+.rick {
   width: 100px;
 }
-.rick:hover span{
+.rick:hover span {
   display: none;
 }
-.rick:hover:before{
-  content: 'Rolled';
+.rick:hover:before {
+  content: "Rolled";
 }
-.rick:hover{
+.rick:hover {
   background-color: #ddd;
   transition: 0.5s;
 }
-.boottoon{
+.boottoon {
   float: left;
   color: #f2f2f2;
   text-align: center;
@@ -91,11 +91,11 @@ body {
   color: black;
   transition: 0.5s;
 }
-.header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   padding: 20px 100px;
   background-color: #333;
   justify-content: space-between;
@@ -103,7 +103,6 @@ body {
   z-index: 100;
   overflow: hidden;
 }
-
 
 /* this is my stuff*/
 
@@ -149,7 +148,7 @@ h2 {
   padding-bottom: 2rem;
 }
 
-.home{
+.home {
   background-color: rgb(20, 20, 20);
   margin: 5% 25%;
   line-height: 35px;
@@ -157,19 +156,19 @@ h2 {
   border-radius: 15px;
   border: solid;
 }
-.title h1{
+.title h1 {
   text-align: center;
   padding-top: 50px;
   font-size: 40px;
 }
-.title h1::after{
-  content:"";
+.title h1::after {
+  content: "";
   height: 2px;
   width: 250px;
   display: block;
   margin: auto;
 }
-.features{
+.features {
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -177,7 +176,7 @@ h2 {
   margin: 80px auto;
   width: 85%;
 }
-.card{
+.card {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -186,16 +185,16 @@ h2 {
   padding: 25px 25px;
   border-radius: 12px;
   background-color: rgba(136, 136, 124, 0.178);
-  width:360px;
+  width: 360px;
 }
-.icon{
+.icon {
   font-size: 40px;
 }
-.card h2{
+.card h2 {
   font-size: 25px;
   margin-bottom: 15px;
 }
-.card p{
+.card p {
   font-size: 15px;
   margin-bottom: 25px;
   line-height: 170%;
@@ -216,7 +215,7 @@ footer {
   display: flex;
   flex-direction: column;
 }
-.centerButton{
+.centerButton {
   display: flex;
   justify-content: center;
 }
@@ -235,7 +234,7 @@ button {
   border: none;
   padding: 1px 5px;
 }
-.lbut{
+.lbut {
   height: 55px;
   width: 100px;
 }
@@ -332,12 +331,12 @@ a:hover {
   justify-content: center;
   align-items: center;
 }
-@media screen and (max-width:940px){
-  .features{
+@media screen and (max-width: 940px) {
+  .features {
     display: flex;
     flex-direction: column;
   }
-  .card{
+  .card {
     width: 85%;
     display: flex;
     margin: 20px 0px;
