@@ -1,12 +1,44 @@
-export default function() {
-    return (
-        <>
-            <h1>Log In</h1>
-            <div className="login">
-                <input placeholder="username" />
-                <input placeholder="password" type="password"/>
-                <button>Log In</button>
-            </div>
-        </>
-);  
+import pb from "lib/pocketbase";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+
+export default function LogIn() {
+  const { register, handleSubmit, reset } = useForm();
+  const [isLoading, setLoading] = useState(false);
+  const [dummy, reload] = useState(false);
+
+  const adminuser = "admin@gmail.com";
+  const adminpass = "adminadmin";
+
+  async function login(data) {
+    setLoading(true);
+    try {
+      const authData = await pb
+        .collection("users")
+        .authWithPassword(data.user, data.pass);
+      const getusername = data.user.substring(0, data.user.lastIndexOf("@"));
+      localStorage.setItem("currentuser", JSON.stringify(getusername));
+    } catch (e) {
+      alert(e);
+    }
+
+    setLoading(false);
+    reset();
+    reload(!dummy);
+  }
+  return (
+    <>
+      {isLoading && <p>Loading...</p>}
+      <h1>Log In</h1>
+      <div className="login">
+        <form onSubmit={handleSubmit(login)}>
+          <input type="text" placeholder="email" {...register("user")} />
+          <input type="password" placeholder="password" {...register("pass")} />
+          <button type="submit" disabled={isLoading}>
+            Log In
+          </button>
+        </form>
+      </div>
+    </>
+  );
 }

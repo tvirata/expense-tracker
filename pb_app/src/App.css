@@ -20,7 +20,8 @@ h1 {
   background-color: black;
 }
 
-.menu-item, .blank {
+.menu-item,
+.blank {
   list-style-type: none;
   padding: 20px;
   padding-left: 40px;
@@ -29,7 +30,6 @@ h1 {
   font-size: 13px;
   color: rgb(200, 200, 200);
   text-decoration: none;
-
 }
 
 a:visited {
@@ -43,8 +43,9 @@ a:visited {
 
 h2 {
   display: inline;
-  margin:  5% 25%;
+  margin: 15% 25%;
   color: rgb(200, 200, 200);
+  padding-bottom: 2rem;
 }
 
 p {
@@ -62,8 +63,7 @@ footer {
 
 .add-new {
   display: inline;
-  margin: 1% 5%;
-  
+  margin: 10% 5%;
 }
 
 .login {
@@ -89,13 +89,13 @@ button {
   border: none;
   padding: 1px 5px;
 }
- 
+
 a {
   text-decoration: none;
   color: rgb(230, 230, 230);
 }
 
-a:hover  {
+a:hover {
   text-shadow: 1px 1px 1px white;
 }
 
@@ -111,8 +111,6 @@ a:hover  {
   margin: auto;
   display: flex;
   flex-direction: column;
-
-
 }
 
 .input-section {
@@ -125,4 +123,58 @@ a:hover  {
   height: 100%;
   width: 70%;
   border-radius: 15px;
+}
+
+.tab {
+  border: double;
+  border-radius: 20px;
+  border-color: rgb(75, 75, 75);
+  border-width: 7px;
+
+  padding: 20px;
+  height: 100%;
+  width: 47%;
+  margin: 50px auto;
+
+  background-color: rgb(230, 230, 230);
+  color: rgb(67, 62, 62);
+  /* box-shadow: 5px 5px 5px rgb(255, 231, 231);
+   */
+}
+
+.item {
+  color: rgb(44, 44, 44);
+  margin: 5px;
+}
+
+.load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.load > button:hover {
+  background-color: rgb(16, 60, 148);
+}
+
+.title {
+  display: flex !important;
+  margin: 0 !important;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+.delete-form {
+  padding-top: 0.5rem;
+}
+.delete {
+  background-color: rgb(20, 20, 20);
+  color: white;
+}
+.delete:hover {
+  background-color: rgb(138, 3, 3);
+}
+.total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
